@@ -10,10 +10,10 @@ fi
 
 validate(){
     if [ $1 -ne 0 ]; then
-        echo "$(2).. Failed"
+        echo "${2}.. Failed"
         exit 1
     else
-        echo "$(2).. success"
+        echo "${2}.. success"
     fi  
 }
 
