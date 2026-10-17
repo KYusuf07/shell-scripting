@@ -13,3 +13,6 @@ declare -i COUNT=5 # Iam declaring as integer
 COUNT=COUNT+1
 
 echo "Count is: $COUNT"
+
+FRUITS=("Apple" "Banana" "Mango")
+echo "ALL Fruits: $FRUITS[@]"
