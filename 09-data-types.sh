@@ -21,4 +21,4 @@ echo "First Fruit: ${FRUITS[1]}"
 
 name="Yusuf Ka"
 
-echo "$(name)tike"
+echo "${name}tike"
