@@ -16,4 +16,9 @@ echo "Count is: $COUNT"
 
 FRUITS=("Apple" "Banana" "Mango")
 echo "ALL Fruits: ${FRUITS[@]}"
-echo "First Fruit: ${FRUITS[1]}"           
+echo "First Fruit: ${FRUITS[1]}"      
+
+
+name="Yusuf"
+
+echo "$NAMEsdwsdwd
