@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+echo "Please enter the marks"
+read marks
+
+
+if [ $marks -lt 33 ]; then
+    echo "pass"
+
+elif     
