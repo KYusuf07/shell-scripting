@@ -5,7 +5,7 @@ echo "Please enter the marks"
 read marks
 
 
-if [ $marks -lt 36 ]; then
+if [ $marks -lt 35 ]; then
     echo "fail"
 
 elif [ $marks -lt 50 ]; then
