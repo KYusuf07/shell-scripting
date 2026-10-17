@@ -22,7 +22,7 @@ validate(){
     fi  
 }
 
-echo "proceeding..."
+
 dnf install nginx -y &>> $logs_file
 validate $? "Nginx Installation"
 
