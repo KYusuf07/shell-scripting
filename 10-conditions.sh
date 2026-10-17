@@ -21,3 +21,5 @@ else
     echo "Distinction"
 
 fi
+
+    echo "End"
