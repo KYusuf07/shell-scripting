@@ -1,0 +1,23 @@
+#!/bin/bash
+
+
+echo "Please enter the marks"
+read marks
+
+
+if [ $marks -gt 33 ]; then
+    echo "pass"
+
+elif [ $marks -lt 50 ]; then
+    echo "Third class"
+
+elif [ $marks -lt 60 ]; then
+    echo "Second class"
+
+elif [ $marks -lt 75 ]; then
+    echo "First class"
+
+else 
+    echo "Distinction"
+
+fi
