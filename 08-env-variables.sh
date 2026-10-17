@@ -3,3 +3,4 @@
 echo "$COURSE"
 echo "$DURATION"
 echo "$TRAINER"
+echo "$MODEOFTRAINING"
