@@ -19,6 +19,6 @@ echo "ALL Fruits: ${FRUITS[@]}"
 echo "First Fruit: ${FRUITS[1]}"      
 
 
-name="Yusuf"
+name="Yusuf Ka
 
-echo "$(name)Yusuf"
+echo "$(name)tike"
