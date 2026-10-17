@@ -20,7 +20,7 @@ else
 fi        
 
 
-dnf install mysqlll -y
+dnf install mysql -y
 
 
 if [ $? -ne 0 ]; then
