@@ -5,3 +5,4 @@ var2=20
 
 
 echo "$var1+$var2"
+echo "$($var1+$var2)"
