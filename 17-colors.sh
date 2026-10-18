@@ -6,6 +6,7 @@ logs_file="${logs_folder}/${0}.log"
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
+N="\e[0m"
 if [ $user_id -ne 0 ]; then
     echo "please run this script with sudo access.."
     exit 1
@@ -17,10 +18,10 @@ echo "Script started execution at $(date +"%F %T")" &>> $logs_file
 
 validate(){
     if [ $1 -ne 0 ]; then
-        echo "${2}..${R}Failed" | tee -a $logs_file
+        echo -e "${2}..${R}FAILED${N}" | tee -a $logs_file
         exit 1
     else
-        echo "${2}..${G}success" | tee -a $logs_file
+        echo -e "${2}..${G}SUCCESS${N}" | tee -a $logs_file
     fi  
 }
 
@@ -33,6 +34,6 @@ do
         dnf install $package -y &>> $logs_file
         validate $? "Installing ${package}"
     else
-        echo "${package} already installed ..${Y}SKIPPING" 
+        echo -e "${package} already installed ..${Y}SKIPPING${N}" 
     fi         
 done    
