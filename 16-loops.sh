@@ -29,7 +29,8 @@ do
     if [ $> -ne 0 ]; then
         echo "Going to Install: ${package}"
     else
-        echo "${package} already installed ..SKIPPING"   
+        echo "${package} already installed ..SKIPPING"
+    fi       
     dnf install $package -y &>> $logs_file
     validate $? "Installing ${package}"
 done    
