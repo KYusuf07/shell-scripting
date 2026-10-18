@@ -9,7 +9,7 @@ Y="\e[33m"
 N="\e[0m"
 
 if [ $user_id -ne 0 ]; then
-    echo "Please run this script with sudo access.."
+    echo "please run this script with sudo access.."
     exit 1
 fi
 
@@ -23,17 +23,18 @@ validate(){
         exit 1
     else
         echo -e "${2}..${G}SUCCESS${N}" | tee -a $logs_file
-    fi
+    fi  
 }
+
 
 for package in $@
 do
     dnf list installed $package &>> $logs_file
     if [ $? -ne 0 ]; then
-        echo "Going to install: ${package}"
+        echo "Going to Install: ${package}"
         dnf install $package -y &>> $logs_file
         validate $? "Installing ${package}"
     else
-        echo -e "${package} already installed...${Y}SKIPPING${N}"
-    fi
-done
+        echo -e "${package} already installed..${Y}SKIPPING${N}"
+    fi         
+done    
