@@ -31,8 +31,6 @@ do
         dnf install $package -y &>> $logs_file
         validate $? "Installing ${package}"
     else
-        echo "${package} already installed ..SKIPPING"
-    fi       
-    dnf install $package -y &>> $logs_file
-    validate $? "Installing ${package}"
+        echo "${package} already installed ..SKIPPING" 
+    fi         
 done    
