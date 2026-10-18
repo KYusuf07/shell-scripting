@@ -26,7 +26,7 @@ validate(){
 for package in $@
 do
     dnf list installed $package
-    if [ $> -ne 0 ]; then
+    if [ $? -ne 0 ]; then
         echo "Going to Install: ${package}"
     else
         echo "${package} already installed ..SKIPPING"
