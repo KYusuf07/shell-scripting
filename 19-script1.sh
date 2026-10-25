@@ -7,4 +7,4 @@ echo "I am in: $present_country"
 echo "PID of $0: $$"
 
 # Run as a new process instead of using 'source'
-sh ./20-script2.sh
+sh 20-script2.sh
