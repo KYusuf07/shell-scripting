@@ -1,9 +1,10 @@
 #!/bin/bash
+
+# You MUST use export here so the child process can access it
 export present_country="India"
 
 echo "I am in: $present_country"
-# We use basename to strip path characters from $0
-echo "PID of $(basename "$0"): $$"
+echo "PID of $0: $$"
 
-# You MUST include ./ so Linux knows to look in the current folder
-source ./20-script2.sh
+# Run as a new process instead of using 'source'
+sh 20-script2.sh
