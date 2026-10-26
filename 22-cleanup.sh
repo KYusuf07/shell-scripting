@@ -24,10 +24,12 @@ fi
 echo "Scanning files older than $days in $source_dir"
 files_to_delete=$(find $source_dir -name "*.log" -type f -mtime +$days)
 
+: '
 if [ -z "$files_to_delete" ]; then
     echo "No log files found older than $days"
     exit 0
 fi
+'
 
 while IFS= read -r line
 do
@@ -38,3 +40,27 @@ done <<< "$files_to_delete"
 
 # < -> for file inputs
 # <<< -> variable as input
+
+
+# --- NEW CODE ADDED HERE ---
+
+# 1. Print the full list of files to the screen in yellow
+echo -e "${Y}The following files will be permanently deleted:${N}"
+echo "$files_to_delete"
+echo "--------------------------------------------------"
+
+# 2. Ask the user for confirmation before proceeding
+read -p "Are you sure you want to delete these files? (y/n): " confirm
+
+if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
+    echo "Deletion cancelled. No files were deleted."
+    exit 0
+fi
+# ---------------------------
+
+while IFS= read -r line
+do
+    echo "File is going to be deleted: $line"
+    rm -f "$line"
+    echo -e "${G}File deleted: $line${N}"
+done <<< "$files_to_delete"
