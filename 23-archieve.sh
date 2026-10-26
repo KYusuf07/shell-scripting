@@ -4,7 +4,6 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-
 source_dir=$1
 dest_dir=$2
 days=${3:-14} # if user is not passing days, we will take 14 days as default
@@ -15,46 +14,43 @@ usage(){
 }
 
 if [ -z "$source_dir" ] || [ -z "$dest_dir" ]; then
-    echo -e "${R}ERROR:: Either source or destination directory is missing${N}"
+    echo "Either source or destination directory are missing"
     usage
 fi
 
 if [ ! -d "$source_dir" ]; then
-    echo -e "${R}ERROR:: Source Directory: $source_dir does not exist${N}"
+    echo "Source Directory: $source_dir does not exist"
     exit 1
 fi
 
-# Automatically create destination directory and set permissions if it doesn't exist
 if [ ! -d "$dest_dir" ]; then
-    echo -e "${Y}Destination Directory does not exist. Creating and setting permissions for: $dest_dir...${N}"
-    sudo mkdir -p "$dest_dir"
-    sudo chown ec2-user:ec2-user "$dest_dir"
+    echo "Destination Directory: $dest_dir does not exist"
+    exit 1
 fi
 
-echo -e "${Y}Scanning files older than $days days in $source_dir...${N}"
-files_to_archive=$(find "$source_dir" -name "*.log" -type f -mtime +$days)
+echo "Scanning files older than $days days in $source_dir"
+files_to_archive=$(find $source_dir -name "*.log" -type f -mtime +$days)
 
 if [ -z "$files_to_archive" ]; then
-    echo -e "${G}No log files found older than $days days${N}"
+    echo "No log files found older than $days days"
     exit 0
 fi
 
 timestamp=$(date +%Y-%m-%d-%H-%M-%S)
+
 file_name="$dest_dir/logs-$timestamp.tar.gz"
 
-# Archiving the files safely
-tar -czf "$file_name" $files_to_archive
+tar -czf $file_name $files_to_archive
 
 if [ $? -ne 0 ]; then
-    echo -e "${R}ERROR:: Logs archival failed${N}"
+    echo "Logs archival is failed"
     exit 1
 else
-    echo -e "${G}Logs successfully archived: $file_name${N}"
-    
-    # Deleting the original files only after successful backup
+    echo "Logs are archived: $file_name"
     while IFS= read -r line
     do
-        rm -f "$line"
-        echo "Original file deleted: $line"
+        echo "File is going to be deleted: $line"
+        rm -f $line
+        echo "File deleted: $line"
     done <<< "$files_to_archive"
 fi
