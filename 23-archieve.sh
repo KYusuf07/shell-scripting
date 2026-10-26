@@ -24,11 +24,11 @@ if [ ! -d "$source_dir" ]; then
     exit 1
 fi
 
-# Safety check for the restricted destination directory
+# Automatically create destination directory and set permissions if it doesn't exist
 if [ ! -d "$dest_dir" ]; then
-    echo -e "${R}ERROR:: Destination Directory: $dest_dir does not exist.${N}"
-    echo -e "${Y}Please create it first using: sudo mkdir -p $dest_dir && sudo chown ec2-user:ec2-user $dest_dir${N}"
-    exit 1
+    echo -e "${Y}Destination Directory does not exist. Creating and setting permissions for: $dest_dir...${N}"
+    sudo mkdir -p "$dest_dir"
+    sudo chown ec2-user:ec2-user "$dest_dir"
 fi
 
 echo -e "${Y}Scanning files older than $days days in $source_dir...${N}"
