@@ -12,8 +12,8 @@ final_body=$(sed -e "s/TO_TEAM/$team_name/g" -e "s/ALERT_TYPE/$alert_type/g" -e 
 
 {
 echo "To: $to_address"
-echo "Subject: Test mail for Shell Script"
+echo "Subject: $subject"
 echo "Content-Type: text/html"
 echo ""
-echo "Test Content"
+echo "final_bodyt"
 } | msmtp "$to_address"
