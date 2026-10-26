@@ -11,9 +11,9 @@ final_message=$(echo "$message" | sed 's/[.|$*^\\\/]/\\&/g')
 final_body=$(sed -e "s/TO_TEAM/$team_name/g" -e "s/ALERT_TYPE/$alert_type/g" -e "s/SERVER_IP/$server_ip/g" -e "s/MESSAGE_BODY/$final_message/g" template.html)
 
 {
-echo "To: kyusufknl@gmail.com"
+echo "To: $to_address"
 echo "Subject: Test mail for Shell Script"
 echo "Content-Type: text/html"
 echo ""
 echo "Test Content"
-} | msmtp "kyusufknl@gmail.com"
+} | msmtp "$to_address"
